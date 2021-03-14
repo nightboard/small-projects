@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Mod</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        background-color: rgb(3, 3, 65);
+        color: white;
+      }
+
+      .check-prime {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-size: 1.5rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+      }
+
+      form * {
+        margin: 15px;
+        padding: 15px;
+        font-size: 1.2rem;
+      }
+
+      form button {
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- check number is prime or not -->
+    <div class="check-prime">
+
+    <!-- form  -->
+      <form name="myForm" onsubmit="return giveAnswer()">
+        <input type="text" name="numerator" placeholder="Numerator" />
+        <input type="text" name="denominator" placeholder="Denomenator" />
+        <input type="submit" value="Answer" />
+      </form>
+      <div id="ans">
+        <!-- answer is showed here after enter -->
+      </div>
+
+    </div>
+    <!-- script  -->
+    <script>
+      function giveAnswer() {
+
+        let numerator = document.forms["myForm"]["numerator"].value;
+        numerator = parseInt(numerator);
+        console.log("typeof(numerator) : " + typeof(numerator));
+        console.log("numerator : " + numerator);
+
+        let denominator = document.forms["myForm"]["denominator"].value;
+        denominator = parseInt(denominator);
+        console.log("typeof(denominator) : " + typeof(denominator));
+        console.log("denominator : " + denominator);
+
+        console.log("(numerator % denominator ) : " + (numerator % denominator));
+
+        document.getElementById('ans').innerHTML = '' + ( numerator % denominator);
+        return false;
+      }
+    </script>
+  </body>
+</html>
