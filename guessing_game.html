@@ -43,12 +43,11 @@
 
     <!-- check number is prime or not -->
     <div class="container">
-
+    <h5>Guess the number between 1 to 100.</h5>
     <!-- form  -->
       <form name="myForm" onsubmit="return giveAnswer()">
-        <input type="text" name="numerator" placeholder="Numerator" />
-        <input type="text" name="denominator" placeholder="Denomenator" />
-        <input type="submit" value="Answer" />
+        <input type="text" name="number" placeholder="Your Guess" autocomplete="off"/>
+        <input type="submit" value="Try Guess" />
       </form>
       <div id="ans">
         <!-- answer is showed here after enter -->
@@ -57,21 +56,22 @@
     </div>
     <!-- script  -->
     <script>
+      let randomNumber = Math.floor(Math.random() * 1000) % 100;
+      let totalAttempts  = 0;
+
       function giveAnswer() {
+        let number = document.forms["myForm"]["number"].value;
+        number = parseInt(number);
 
-        let numerator = document.forms["myForm"]["numerator"].value;
-        numerator = parseInt(numerator);
-        console.log("typeof(numerator) : " + typeof(numerator));
-        console.log("numerator : " + numerator);
-
-        let denominator = document.forms["myForm"]["denominator"].value;
-        denominator = parseInt(denominator);
-        console.log("typeof(denominator) : " + typeof(denominator));
-        console.log("denominator : " + denominator);
-
-        console.log("(numerator % denominator ) : " + (numerator % denominator));
-
-        document.getElementById('ans').innerHTML = '' + ( numerator % denominator);
+        if(randomNumber == number) {
+            document.getElementById('ans').innerHTML = "You got it in " + totalAttempts + " attempts";
+        } else if(randomNumber < number) {
+            document.getElementById('ans').innerHTML = 'Too Big';
+            totalAttempts++;
+        } else {
+            document.getElementById('ans').innerHTML = 'Too Low';
+            totalAttempts++;
+        }
         return false;
       }
     </script>
